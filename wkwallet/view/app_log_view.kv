@@ -1,0 +1,42 @@
+<AppLogView>
+    logs_text_field: logs_text_field
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: [1, 1, 1, 1]
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            adaptive_height: True
+            padding: [dp(0), dp(8)]
+            spacing: dp(12)
+
+            MDIconButton:
+                icon: "arrow-left"
+                icon_size: sp(24)
+                pos_hint: {"center_y": .5}
+                theme_icon_color: "Custom"
+                icon_color: [0.35, 0.35, 0.35, 1]
+                on_release: root.back()
+
+            MDLabel:
+                text: "App Log"
+                font_size: sp(24)
+                bold: True
+                color: [0.35, 0.35, 0.35, 1]
+                pos_hint: {"center_y": .5}
+            Widget:
+                size_hint_x: 1
+
+        ScrollView:
+            size_hint_y: 1
+            MDBoxLayout:
+                orientation: 'vertical'
+                padding: dp(16)
+                size_hint_y: None
+                height: self.minimum_height
+
+                MDLabel:
+                    id: logs_text_field
+                    adaptive_height: True
+                    size_hint_y: None

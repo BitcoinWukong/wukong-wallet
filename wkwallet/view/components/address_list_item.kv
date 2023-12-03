@@ -1,0 +1,47 @@
+<AddressListItem>
+    balance_label: balance_label
+    status_label: status_label
+    address_label: address_label
+
+    AddressListItemBox:
+        orientation: 'vertical'
+        # Can't find a way to remove the 16dp padding, so we have to deduct 16dp * 2 from root.width.
+        width: root.width - dp(32)
+        # Without `adaptive_width = True`, the width settings doesn't work.
+        adaptive_width: True
+        spacing: dp(8)
+        padding: [dp(0), dp(8)]
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            size_hint: 1, 0.5
+
+            MDLabel:
+                text: root.address_data.address_str[:10]+ '...' + root.address_data.address_str[-5:]
+                font_size: sp(16)
+                color: [0.3, 0.3, 0.3, 1]
+
+            MDLabel:
+                id: balance_label
+                font_size: sp(16)
+                color: [0.3, 0.3, 0.3, 1]
+                halign: 'right'
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            size_hint: 1, 0.5
+
+            MDLabel:
+                id: status_label
+                size_hint_x: 0.5
+                font_size: sp(14)
+                bold: True
+                color: [0.5, 0.5, 0.5, 1]
+
+            MDLabel:
+                id: address_label
+                size_hint_x: 0.5
+                font_size: sp(14)
+                bold: True
+                color: [0.5, 0.5, 0.5, 1]
+                halign: 'right'

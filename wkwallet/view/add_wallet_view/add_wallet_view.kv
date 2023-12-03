@@ -1,0 +1,127 @@
+#:import MnemonicTab view.add_wallet_view.mnemonic_tab.MnemonicTab
+#:import WatchOnlyTab view.add_wallet_view.watch_only_tab.WatchOnlyTab
+
+<MnemonicTab>
+    mnemonic_text_field: mnemonic_text_field
+    account_number_button: account_number_button
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        spacing: dp(12)
+        padding: dp(16)
+        md_bg_color: [1, 1, 1, 1]
+
+        MDTextField:
+            id: mnemonic_text_field
+            multiline: True
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            adaptive_height: True
+            padding: [dp(0), dp(8)]
+            spacing: dp(16)
+
+            MDLabel:
+                text: "Total Accounts:"
+                color: [0.35, 0.35, 0.35, 1]
+
+            MDRaisedButton:
+                id: account_number_button
+                text: "1"
+                on_release: root.press_account_number_button()
+
+        MDRaisedButton:
+            text: "Add"
+            size_hint_x: 1
+            on_release: root.press_add()
+
+        Widget:
+            size_hint_y: 1
+
+
+<WatchOnlyTab>
+    wallet_accounts_list: wallet_accounts_list
+    MDBoxLayout:
+        orientation: 'vertical'
+        spacing: dp(16)
+        padding: dp(16)
+        md_bg_color: [1, 1, 1, 1]
+
+        MDBoxLayout:
+            id: wallet_accounts_list
+            orientation: 'vertical'
+            spacing: dp(16)
+            adaptive_height: True
+            md_bg_color: [1, 1, 1, 1]
+
+        MDRaisedButton:
+            text: "Scan"
+            size_hint_x: 0.7
+            on_release: root.press_scan()
+
+        MDRaisedButton:
+            text: "Add Account"
+            size_hint_x: 0.7
+            on_release: root.press_add_account()
+
+        MDRaisedButton:
+            text: "Add"
+            size_hint_x: 1
+            on_release: root.press_add()
+
+        Widget:
+            size_hint_y: 1
+
+
+<AddWalletView>
+    mnemonic_tab: mnemonic_tab
+    watch_only_tab: watch_only_tab
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        padding: [dp(16), dp(0)]
+        md_bg_color: [1, 1, 1, 1]
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            adaptive_height: True
+            padding: [dp(0), dp(8)]
+            spacing: dp(16)
+
+            MDIconButton:
+                icon: "arrow-left"
+                icon_size: sp(24)
+                pos_hint: {"center_y": .5}
+                theme_icon_color: "Custom"
+                icon_color: [0.35, 0.35, 0.35, 1]
+                on_release: root.back()
+
+            MDLabel:
+                text: "Add Wallet"
+                font_size: sp(24)
+                bold: True
+                color: [0.35, 0.35, 0.35, 1]
+                pos_hint: {"center_y": .5}
+
+        Widget:
+            height: dp(4)
+            size_hint_y: None
+
+        MDTabs:
+            size_hint_y: 1
+            text_color_normal: [0.35, 0.35, 0.35, 1]
+            text_color_active: [0.25, 0.25, 0.25, 1]
+            background_color: [1, 1, 1, 1]
+            allow_stretch: False
+            fixed_tab_label_width: (root.width - dp(32)) / 2
+
+            MnemonicTab:
+                id: mnemonic_tab
+                manager: root.manager
+                title: "Mnemonic"
+
+            WatchOnlyTab:
+                id: watch_only_tab
+                manager: root.manager
+                title: "Watch Only"

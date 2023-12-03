@@ -1,0 +1,16 @@
+<WalletCoinsTab>
+    root_list_view: root_list_view
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        # [padding_left, padding_top, padding_right, padding_bottom]
+        padding: [dp(16), dp(0), dp(0), dp(0)]
+
+        ScrollView:
+            size_hint_y: 1
+            do_scroll_x: False
+
+            MDList:
+                id: root_list_view
+                spacing: "12dp"

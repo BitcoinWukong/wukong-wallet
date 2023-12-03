@@ -1,0 +1,2 @@
+alias bitcoin-cli="bitcoin-cli -datadir=/bitcoind -rpcwallet=demo-wallet"
+alias cli="bitcoin-cli -datadir=/bitcoind -rpcwallet=demo-wallet"

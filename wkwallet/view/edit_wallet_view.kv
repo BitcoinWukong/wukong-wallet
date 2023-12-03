@@ -1,0 +1,66 @@
+<EditWalletView>
+    wallet_name_input: wallet_name_input
+    xpub_input: xpub_input
+    fidelity_bond_switch: fidelity_bond_switch
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: [1, 1, 1, 1]
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            adaptive_height: True
+            padding: [dp(0), dp(8)]
+            spacing: dp(12)
+
+            MDIconButton:
+                icon: "arrow-left"
+                icon_size: sp(24)
+                pos_hint: {"center_y": .5}
+                theme_icon_color: "Custom"
+                icon_color: [0.35, 0.35, 0.35, 1]
+                on_release: root.back()
+
+            MDLabel:
+                text: "Edit Wallet"
+                font_size: sp(24)
+                bold: True
+                color: [0.35, 0.35, 0.35, 1]
+                pos_hint: {"center_y": .5}
+            Widget:
+                size_hint_x: 1
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            spacing: dp(30)
+            padding: dp(30)
+
+            MDTextField:
+                id: wallet_name_input
+                hint_text: "Wallet Name"
+
+            MDTextField:
+                id: xpub_input
+                hint_text: "Wallet Info"
+                multiline: True
+
+            MDBoxLayout:
+                orientation: 'horizontal'
+                adaptive_height: True
+
+                MDLabel:
+                    text: "Fidelity Bond"
+                    adaptive_size: True
+                    pos_hint: {"center_y": .5}
+                Widget:
+                    size_hint_x: 1
+                MDSwitch:
+                    id: fidelity_bond_switch
+                    pos_hint_y: 0.5
+
+            MDRaisedButton:
+                text: "Delete"
+                size_hint_x: 1
+                on_release: root.press_delete()
+            Widget:
+                size_hint_y: 1

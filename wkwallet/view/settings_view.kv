@@ -1,0 +1,84 @@
+<SettingsView>
+    server_ip_input: server_ip_input
+    connection_status_label: connection_status_label
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: [1, 1, 1, 1]
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            adaptive_height: True
+            padding: [dp(0), dp(8)]
+            spacing: dp(12)
+
+            MDIconButton:
+                icon: "arrow-left"
+                icon_size: sp(24)
+                pos_hint: {"center_y": .5}
+                theme_icon_color: "Custom"
+                icon_color: [0.35, 0.35, 0.35, 1]
+                on_release: root.back()
+
+            MDLabel:
+                text: "Settings"
+                font_size: sp(24)
+                bold: True
+                color: [0.35, 0.35, 0.35, 1]
+                pos_hint: {"center_y": .5}
+            Widget:
+                size_hint_x: 1
+
+        ScrollView:
+            size_hint_y: 1
+            MDBoxLayout:
+                orientation: 'vertical'
+                spacing: dp(16)
+                padding: dp(16)
+                size_hint_y: None
+                height: self.minimum_height
+
+                MDLabel:
+                    text: "Server IP"
+                    size: self.texture_size
+                    size_hint_y: None
+                MDTextField:
+                    id: server_ip_input
+                MDRaisedButton:
+                    text: "Connect"
+                    size_hint_x: 1
+                    on_release: root.press_connect()
+                MDLabel:
+                    id: connection_status_label
+                    text: "offline"
+                    color: [0.7, 0.7, 0.7, 1]
+                    halign: 'center'
+                    padding: [dp(0), dp(8)]
+                    adaptive_height: True
+                Widget:
+                    height: dp(24)
+                    size_hint_y: None
+
+                MDLabel:
+                    text: "Wallet Labels"
+                    size: self.texture_size
+                    size_hint_y: None
+                MDRaisedButton:
+                    text: "Export Labels"
+                    size_hint_x: 1
+                    on_release: root.press_export_labels()
+                MDRaisedButton:
+                    text: "Import Labels"
+                    size_hint_x: 1
+                    on_release: root.press_import_labels()
+
+                MDLabel:
+                    id: app_version_label
+                    color: [0.7, 0.7, 0.7, 1]
+                    halign: 'center'
+                    padding: [dp(0), dp(8)]
+                    adaptive_height: True
+
+                Widget:
+                    size_hint_y: 1
+

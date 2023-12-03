@@ -1,0 +1,112 @@
+#:import WalletCoinsTab view.wallet_view.wallet_coins_tab.WalletCoinsTab
+#:import WalletAddressesTab view.wallet_view.wallet_addresses_tab.WalletAddressesTab
+#:import WalletTxsTab view.wallet_view.wallet_txs_tab.WalletTxsTab
+
+<WalletView>
+    wallet_name_label: wallet_name_label
+    balance_button: balance_button
+    refresh_spinner: refresh_spinner
+
+    coins_tab: coins_tab
+    addresses_tab: addresses_tab
+    txs_tab: txs_tab
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        md_bg_color: [1, 1, 1, 1]
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            adaptive_height: True
+            padding: [dp(0), dp(8)]
+
+            MDIconButton:
+                icon: "arrow-left"
+                icon_size: sp(24)
+                pos_hint: {"center_y": .5}
+                theme_icon_color: "Custom"
+                icon_color: [0.35, 0.35, 0.35, 1]
+                on_release: root.back()
+            Widget:
+                width: dp(12)
+                size_hint_x: None
+
+            MDLabel:
+                id: wallet_name_label
+                text: "Wallet"
+                font_size: sp(24)
+                bold: True
+                color: [0.35, 0.35, 0.35, 1]
+                size_hint_x: 1
+                pos_hint: {"center_y": .5}
+
+            MDSpinner:
+                id: refresh_spinner
+                size_hint: None, None
+                size: dp(15), dp(15)
+                line_width: dp(1.0)
+                pos_hint: {"center_y": .5}
+            MDIconButton:
+                id: dots_vertical_button
+                icon: "dots-vertical"
+                icon_size: sp(24)
+                pos_hint: {"center_y": .5}
+                theme_icon_color: "Custom"
+                icon_color: [0.35, 0.35, 0.35, 1]
+                on_release: root.press_vertical_dots()
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: [dp(16), dp(0)]
+
+            Widget:
+                height: dp(16)
+                size_hint_y: None
+
+            MDBoxLayout:
+                orientation: 'vertical'
+                adaptive_height: True
+                width: root.width
+                spacing: dp(12)
+
+                MDTextButton:
+                    id: balance_button
+                    text: '- sats'
+                    font_size: sp(28)
+                    bold: True
+                    color: [0.3, 0.3, 0.3, 1]
+                    halign: 'center'
+                    adaptive_height: True
+                    width: root.width - dp(32)
+                    on_release: root.on_press_balance_button()
+
+            Widget:
+                height: dp(28)
+                size_hint_y: None
+
+            MDTabs:
+                size_hint_y: 1
+                text_color_normal: [0.35, 0.35, 0.35, 1]
+                text_color_active: [0.25, 0.25, 0.25, 1]
+                background_color: [1, 1, 1, 1]
+                allow_stretch: False
+                fixed_tab_label_width: (root.width - dp(32)) / 3
+
+                WalletCoinsTab:
+                    id: coins_tab
+                    manager: root.manager
+                    wallet: root.wallet
+                    title: "Coins"
+
+                WalletTxsTab:
+                    id: txs_tab
+                    manager: root.manager
+                    wallet: root.wallet
+                    title: "Transactions"
+
+                WalletAddressesTab:
+                    id: addresses_tab
+                    manager: root.manager
+                    wallet: root.wallet
+                    title: "Addresses"

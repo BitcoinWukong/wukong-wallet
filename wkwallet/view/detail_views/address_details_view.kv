@@ -1,0 +1,79 @@
+#:import Clipboard kivy.core.clipboard.Clipboard
+
+<AddressDetailsView>
+    address_label_input: address_label_input
+    address_balance_label: address_balance_label
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: [1, 1, 1, 1]
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            adaptive_height: True
+            padding: [dp(0), dp(8)]
+            spacing: dp(12)
+
+            MDIconButton:
+                icon: "arrow-left"
+                icon_size: sp(24)
+                pos_hint: {"center_y": .5}
+                theme_icon_color: "Custom"
+                icon_color: [0.35, 0.35, 0.35, 1]
+                on_release: root.back()
+
+            MDLabel:
+                text: "Address Details"
+                font_size: sp(24)
+                bold: True
+                color: [0.35, 0.35, 0.35, 1]
+                pos_hint: {"center_y": .5}
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: [dp(16), dp(0)]
+            spacing: dp(16)
+            size_hint_y: 1
+            md_bg_color: [1, 1, 1, 1]
+
+            MDTextField:
+                id: address_label_input
+                font_size: sp(20)
+                hint_text: "Label"
+                text: root.address_data.label
+
+            MDTextButton:
+                font_style: 'H5'
+                text: root.address_data.address_str
+                size_hint_x: 1
+                adaptive_height: True
+                on_release:
+                    Clipboard.copy(self.text)
+
+            Widget:
+                height: dp(32)
+                size_hint_y: None
+
+            MDTextButton:
+                id: address_balance_label
+                text: "- sats"
+                font_style: 'H4'
+                size_hint_x: 1
+                halign: "center"
+                adaptive_height: True
+                on_release:
+                    root.press_address_balance()
+
+            Widget:
+                height: dp(32)
+                size_hint_y: None
+
+            MDRaisedButton:
+                id: send_button
+                text: "Send"
+                font_style: 'H6'
+                size_hint_x: 1
+                on_release: root.press_send()
+
+            Widget:
+                size_hint_y: 1

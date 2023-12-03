@@ -1,0 +1,57 @@
+<CreateTxView>
+    tx_hex_label: tx_hex_label
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+        md_bg_color: [1, 1, 1, 1]
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            adaptive_height: True
+            padding: [dp(0), dp(8)]
+            spacing: dp(12)
+
+            MDIconButton:
+                icon: "arrow-left"
+                icon_size: sp(24)
+                pos_hint: {"center_y": .5}
+                theme_icon_color: "Custom"
+                icon_color: [0.35, 0.35, 0.35, 1]
+                on_release: root.back()
+
+            MDLabel:
+                text: "Create Transaction"
+                font_size: sp(24)
+                bold: True
+                color: [0.35, 0.35, 0.35, 1]
+                pos_hint: {"center_y": .5}
+
+        Widget:
+            height: dp(16)
+            size_hint_y: None
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: [dp(16), dp(0)]
+            spacing: dp(16)
+            size_hint_y: 1
+            md_bg_color: [1, 1, 1, 1]
+
+            MDTextButton:
+                id: tx_hex_label
+                font_style: 'H5'
+                size_hint_x: 1
+                halign: "center"
+                adaptive_height: True
+                on_release:
+                    Clipboard.copy(self.text)
+
+            MDRaisedButton:
+                text: "Broadcast"
+                font_style: 'H6'
+                size_hint_x: 1
+                on_release: root.press_broadcast()
+
+            Widget:
+                size_hint_y: 1

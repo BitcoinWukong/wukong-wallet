@@ -1,0 +1,26 @@
+<SelectAddressListItem>
+    SelectAddressListItemBox:
+        orientation: 'horizontal'
+        # Can't find a way to remove the 16dp padding, so we have to deduct 16dp * 2 from root.width.
+        width: root.width - dp(32)
+        # Without `adaptive_width = True`, the width settings doesn't work.
+        adaptive_width: True
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            spacing: dp(12)
+
+            # UTXO ID
+            MDLabel:
+                text: root.address_data.address_str
+                font_size: sp(14)
+                bold: True
+                size_hint_x: 0.8
+                color: [0.5, 0.5, 0.5, 1]
+
+            # UTXO balance
+            MDLabel:
+                text: str(root.address_data.total_balance) + " sats"
+                font_size: sp(14)
+                size_hint_x: 0.2
+                bold: True

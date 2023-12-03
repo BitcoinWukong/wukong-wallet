@@ -1,0 +1,7 @@
+*.pyc
+__pycache__
+ENV
+pp
+dist
+build
+connectrum.egg-info

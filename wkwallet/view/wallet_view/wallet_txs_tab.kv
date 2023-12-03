@@ -1,0 +1,21 @@
+#:import TransactionListItem view.components.transaction_list_item.TransactionListItem
+
+<WalletTxsTab>
+    tx_history_list: tx_history_list
+
+    MDBoxLayout:
+        orientation: 'vertical'
+        size: root.width, root.height
+
+        RecycleView:
+            id: tx_history_list
+            key_viewclass: 'viewclass'
+            key_size: 'height'
+            size_hint_y: 1
+
+            RecycleBoxLayout:
+                orientation: 'vertical'
+                height: self.minimum_height
+                size_hint_y: None
+                default_size: None, dp(70)
+                default_size_hint: 1, None

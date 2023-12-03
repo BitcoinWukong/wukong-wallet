@@ -1,0 +1,57 @@
+#:import Clipboard kivy.core.clipboard.Clipboard
+
+<TransactionDetailsView>
+    tx_label_input: tx_label_input
+    MDBoxLayout:
+        orientation: 'vertical'
+        md_bg_color: [1, 1, 1, 1]
+
+        MDBoxLayout:
+            orientation: 'horizontal'
+            adaptive_height: True
+            padding: [dp(0), dp(8)]
+            spacing: dp(12)
+
+            MDIconButton:
+                icon: "arrow-left"
+                icon_size: sp(24)
+                pos_hint: {"center_y": .5}
+                theme_icon_color: "Custom"
+                icon_color: [0.35, 0.35, 0.35, 1]
+                on_release: root.back()
+
+            MDLabel:
+                text: "Transaction Details"
+                font_size: sp(24)
+                bold: True
+                color: [0.35, 0.35, 0.35, 1]
+                pos_hint: {"center_y": .5}
+
+        MDBoxLayout:
+            orientation: 'vertical'
+            padding: [dp(16), dp(0)]
+            spacing: dp(16)
+            size_hint_y: 1
+            md_bg_color: [1, 1, 1, 1]
+
+            MDTextField:
+                id: tx_label_input
+                font_size: sp(20)
+                hint_text: "Label"
+                text: root.tx_data.label
+
+            MDLabel:
+                id: balance_change_label
+                font_size: sp(20)
+                adaptive_height: True
+
+            MDTextButton:
+                font_style: 'H5'
+                text: root.tx_data.tx_id
+                size_hint_x: 1
+                adaptive_height: True
+                on_release:
+                    Clipboard.copy(self.text)
+
+            Widget:
+                size_hint_y: 1

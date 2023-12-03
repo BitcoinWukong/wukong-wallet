@@ -1,0 +1,52 @@
+<TransactionListItem>
+
+    TransactionListItemBox:
+        orientation: 'horizontal'
+        # Can't find a way to remove the 16dp padding, so we have to deduct 16dp * 2 from root.width.
+        width: root.width - dp(32)
+        # Without `adaptive_width = True`, the width settings doesn't work.
+        adaptive_width: True
+
+        # A dedicated MDBoxLayout for MDIcon, otherwise the width setting would be messed up
+        MDBoxLayout:
+            orientation: 'horizontal'
+            size_hint_x: 0.15
+            MDIconButton:
+                icon: root.tx_icon
+                icon_color: root.tx_color
+                theme_icon_color: 'Custom'
+
+        # Main content box
+        MDBoxLayout:
+            orientation: 'vertical'
+            size_hint_x: 0.85
+
+            MDBoxLayout:
+                orientation: 'horizontal'
+                size_hint_y: 0.5 if (root.tx_data and root.tx_data.label) else 1
+
+                # Tx time on the left
+                MDLabel:
+                    text: root.tx_time
+                    font_size: sp(14)
+                    bold: True
+                    color: [0.5, 0.5, 0.5, 1]
+
+                # Balance change on the right
+                MDLabel:
+                    text: root.balance_change
+                    color: root.tx_color
+                    font_size: sp(14)
+                    bold: True
+                    size_hint_x: None
+                    width: dp(150)
+                    halign: 'right'
+
+            MDLabel:
+                text: root.label
+                size_hint: 1, 0.5 if root.label else None
+                height: root.height / 2 if root.label else 0
+                font_size: sp(14)
+                bold: True
+                color: [0.5, 0.5, 0.5, 1]
+
